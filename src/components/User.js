@@ -1,38 +1,17 @@
 import React from 'react';
-import axios from 'axios';
 
 class User extends React.Component {
-    state = {
-        user: {},
-        followers: []
-    }
-    
-    componentDidMount() {
-        axios.get("https://api.github.com/users/morgankj")
-            .then(res => {
-                this.setState({
-                    ...this.state,
-                    user: res.data
-                });
-            })
-            .catch(err => console.error(err));
-        
-        axios.get("https://api.github.com/users/morgankj/followers")
-            .then(res => {
-                this.setState({
-                    ...this.state,
-                    followers: res.data
-                });
-            })
-            .catch(err => console.error(err));
-    }
-    
     render() {
-        console.log(this.state)
         return (
             <div>
-                <div id="PLACEHOLDER User div - which will also call the follower list component">
-                    <div>USER</div>
+                <div id={this.props.userData.id} >
+                    <img src={this.props.userData.avatar_url} alt="user github headshot" />
+                    <div>
+                        <h3>{this.props.userData.name}</h3>
+                        <p>({this.props.userData.bio})</p>
+                        <p>TOTAL REPOS: {this.props.userData.public_repos}</p>
+                        <p>TOTAL FOLLOWERS: {this.props.userData.followers}</p>
+                    </div>
                     <div>FOLLOWERS</div>
                 </div>
             </div>
