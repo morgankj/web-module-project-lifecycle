@@ -14,7 +14,6 @@ class App extends React.Component {
   componentDidMount() {
     axios.get(`https://api.github.com/users/morgankj`)
       .then(res => {
-        console.log(res.data);
         this.setState({
           ...this.state,
           userData: res.data
@@ -53,7 +52,7 @@ class App extends React.Component {
             <button onClick={this.onClick} >SEARCH</button>
           </form>
         </header>
-        <User userData={this.state.userData} />
+        <User userData={this.state.userData} followers={this.state.followers} />
       </div>
     );
   }
