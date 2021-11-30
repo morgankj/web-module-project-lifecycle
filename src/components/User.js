@@ -7,7 +7,7 @@ class User extends React.Component {
         return (
             <div>
                 <div id="currentUser" >
-                    <img src={this.props.userData.avatar_url} alt="user github headshot" />
+                    <img width="20%" src={this.props.userData.avatar_url} alt="user github headshot" />
                     <div>
                         <h3>{this.props.userData.name}</h3>
                         <p>({this.props.userData.bio})</p>
