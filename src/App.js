@@ -20,6 +20,16 @@ class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+
+    axios.get(`https://api.github.com/users/morgankj/followers`)
+      .then(res => {
+        this.setState({
+          ...this.state,
+          followers: res.data,
+          handle: ""
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   onChange = event => {
@@ -31,7 +41,16 @@ class App extends React.Component {
 
   onClick = event => {
     event.preventDefault();
-    axios.get("https://api.github.com/users/morgankj/followers")
+    axios.get(`https://api.github.com/users/${this.state.handle}`)
+      .then(res => {
+        this.setState({
+          ...this.state,
+          userData: res.data
+        });
+      })
+      .catch(err => console.error(err));
+
+    axios.get(`https://api.github.com/users/${this.state.handle}/followers`)
       .then(res => {
         this.setState({
           ...this.state,
