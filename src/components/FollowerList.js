@@ -5,11 +5,13 @@ import Follower from './Follower';
 class FollowerList extends React.Component {
     render() {
         return (
-            <div id="followerGallery">
-                <h3>FOLLOWERS:</h3>
-                {this.props.followers.map(follower => (
-                    <Follower key={follower.id} follower={follower} />
-                ))}
+            <div>
+                <h2>FOLLOWERS:</h2>
+                <div id="followerGallery">
+                    {this.props.followers.map(follower => (
+                        <Follower key={follower.id} follower={follower} />
+                    ))}
+                </div>
             </div>
         )
     }

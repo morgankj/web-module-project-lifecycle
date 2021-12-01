@@ -72,8 +72,8 @@ class App extends React.Component {
         <header>
           <h1>GITHUB INFO</h1>
           <form>
-            <input onChange={this.onChange} value={this.state.handle} />
-            <button onClick={this.onClick} >SEARCH</button>
+            <input onChange={this.onChange} value={this.state.handle} placeholder="Github Handle" />
+            <button onClick={this.onClick} >Search</button>
           </form>
         </header>
         <User userData={this.state.userData} followers={this.state.followers} />
