@@ -1,84 +1,68 @@
-import axios from 'axios';
-import e from 'cors';
 import React from 'react';
+import axios from 'axios';
 
 import User from './components/User';
+import FollowerList from './components/FollowerList';
 
 class App extends React.Component {
   state = {
-    handle: "",
-    userData: {},
+    currentUser: "morgankj",
+    user: {},
     followers: []
   }
 
   componentDidMount() {
-    axios.get(`https://api.github.com/users/morgankj`)
+    axios.get(`https://api.github.com/users/${this.state.currentUser}`)
       .then(res => {
         this.setState({
           ...this.state,
-          userData: res.data
+          user: res.data
         });
       })
-      .catch(err => console.error(err));
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("Change in state: ", this.state);
-    if (this.state.userData !== prevState.userData) {
-      axios.get(`https://api.github.com/users/morgankj/followers`)
+    if(this.state.user !== prevState.user) {
+      axios.get(`https://api.github.com/users/${this.state.currentUser}/followers`)
       .then(res => {
         this.setState({
           ...this.state,
-          followers: res.data,
-          handle: ""
+          followers: res.data
         });
       })
-      .catch(err => console.error(err));
     }
   }
 
-  onChange = event => {
+  handleChange = (event) => {
     this.setState({
       ...this.state,
-      handle: event.target.value
-    })
+      currentUser: event.target.value
+    });
   }
 
-  onClick = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    axios.get(`https://api.github.com/users/${this.state.handle}`)
+    axios.get(`https://api.github.com/users/${this.state.currentUser}`)
       .then(res => {
         this.setState({
           ...this.state,
-          userData: res.data
+          user: res.data
         });
       })
-      .catch(err => console.error(err));
-
-    axios.get(`https://api.github.com/users/${this.state.handle}/followers`)
-      .then(res => {
-        this.setState({
-          ...this.state,
-          followers: res.data,
-          handle: ""
-        });
-      })
-      .catch(err => console.error(err));
   }
 
   render() {
-    return(
-      <div id="App">
-        <header>
-          <h1>GITHUB INFO</h1>
-          <form>
-            <input onChange={this.onChange} value={this.state.handle} placeholder="Github Handle" />
-            <button onClick={this.onClick} >Search</button>
-          </form>
-        </header>
-        <User userData={this.state.userData} followers={this.state.followers} />
-      </div>
-    );
+    return(<div>
+      <h1>Github Info</h1>
+      <form onSubmit={this.handleSubmit} >
+        <input placeholder="Github Handle" onChange={this.handleChange} />
+        <button>Search</button>
+      </form>
+
+      <User user={this.state.user} />
+      <FollowerList followers={this.state.followers} />
+
+    </div>);
   }
 }
 

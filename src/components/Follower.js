@@ -4,10 +4,10 @@ class Follower extends React.Component {
     render() {
         const { follower } = this.props;
         
-        return (
-            <div key={follower.key} className="followerContainer">
-                <img src={follower.avatar_url} alt="follower profile headshot" className="followerImg" />
-                <h3>{follower.login}</h3>
+        return(
+            <div className="follower">
+                <img src={follower.avatar_url} />
+                <a target="_blank" href={follower.html_url}><p>{follower.login}</p></a>
             </div>
         )
     }

@@ -1,23 +1,20 @@
 import React from 'react';
 
-import FollowerList from './FollowerList';
-
 class User extends React.Component {
     render() {
-        return (
-            <div>
-                <div id="currentUser" >
-                    <img src={this.props.userData.avatar_url} alt="user github headshot" />
-                    <div className="followerText" >
-                        <h3>{this.props.userData.name}</h3>
-                        <h4>({this.props.userData.bio})</h4>
-                        <p>TOTAL REPOS: {this.props.userData.public_repos}</p>
-                        <p>TOTAL FOLLOWERS: {this.props.userData.followers}</p>
-                    </div>
+        const { user } = this.props;
+        
+        return(
+            <div id="currentUser">
+                <img src={user.avatar_url} />
+                <div id="userInfo">
+                    <a target="_blank" rel="noreferrer" href={user.html_url} ><h2>{user.name}</h2></a>
+                    <p>({user.login})</p>
+                    <p>Total Repos: {user.public_repos}</p>
+                    <p>Total Followers: {user.followers}</p>
                 </div>
-                <FollowerList followers={this.props.followers} />
             </div>
-        )
+        );
     }
 }
 

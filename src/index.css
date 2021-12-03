@@ -28,7 +28,6 @@ html, body {
 .wrapper {
   min-height: 100vh;
   margin-bottom: -40px;
-  background-color: lightyellow;
 }
 
 .footerBar, .push {
@@ -36,18 +35,24 @@ html, body {
 }
 
 * {
-  text-decoration: none;
   text-transform: uppercase;
 }
 
 /* Rest of Styling */
-.header {
-  display: flex;
+a {
+  color: black
+}
+a:hover {
+  color: grey;
 }
 
 h1 {
   font-size: 6rem;
   line-height: 1;
+}
+
+h2 {
+  font-size: 3rem;
 }
 
 form input, form button {
@@ -75,55 +80,36 @@ button:hover {
   background-color: grey;
 }
 
-h3 {
-  text-decoration: underline;
-}
-
 #currentUser {
   display: flex;
 }
 
 #currentUser img {
-  height: 25rem;
-}
-
-#currentUser h3, h2 {
-  font-size: 2.5rem;
-}
-
-h2 {
-  margin: 1.5% 0;
-}
-
-h4 {
-  font-size: 1.1rem;
-}
-
-#currentUser h3, h4 {
-  line-height: 1;
+  width: 30rem;
   margin-bottom: 2%;
 }
 
-.followerText {
-  margin-left: 1%;
+#userInfo {
+  margin: 0 2%;
 }
 
-#currentUser p {
-  padding-top: 1.5%;
+#userInfo h2 {
+  line-height: 1;
 }
 
-#followerGallery {
+#followers {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  margin: 2% 0;
 }
 
-.followerContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
+.follower img {
+  width: 18rem;
 }
 
-.followerImg {
-  height: 15rem;
+.follower {
+  margin-bottom: 2%;
+  text-align: center;
+  /* width: 20%; */
 }
